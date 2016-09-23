@@ -8,11 +8,18 @@ class UpgradedStack(Stack):
         self.__max_stack = Stack()
 
     def max_val(self):
-        # return self.__max_stack.peek()
-        pass
+
+        if self.__max_stack.is_empty() is False:
+            return self.__max_stack.peek()
 
     def push(self, item):
-        pass
+        super(UpgradedStack, self).push(item)
+        if self.__max_stack.is_empty():
+            self.__max_stack.push(item)
+        else:
+            if item > self.__max_stack.peek():
+                self.__max_stack.push(item)
 
     def pop(self):
-        pass
+        if super(UpgradedStack, self).pop() == self.__max_stack.peek():
+            self.__max_stack.pop()
